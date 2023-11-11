@@ -1,0 +1,43 @@
+- Contexto Inicial:
+
+O sistema representa o sistema JavaLar, com a estrela Java no centro e sete planetas: Python, JavaScript, Ruby on Rails, PHP, C#, C++, e C.
+Os planetas se movem em órbitas quadradas ao redor de Java em um plano cartesiano.
+
+- Movimento de Translação:
+
+Cada planeta tem uma velocidade de translação específica.
+A velocidade de translação é afetada pelo tempo informado pelo usuário.
+A direção do movimento é antihorária e em formato de quadrado.
+
+- Movimento de Rotação:
+
+Cada planeta também tem um movimento de rotação com base em horas.
+Os planetas se movem de acordo com um padrão de tempo específico.
+
+- Bugs e Desenvolvedores:
+
+Bugs e desenvolvedores são inseridos no plano de forma aleatória.
+Colisões com bugs diminuem a velocidade do planeta.
+Colisões com desenvolvedores aceleram o planeta.
+Planetas com velocidade zero são removidos do sistema.
+
+- Funcionalidades do Sistema:
+
+Menu de usuário para indicar um novo instante, tempo do instante e quantidade de bugs e desenvolvedores.
+Cálculo da nova velocidade de translação dos planetas.
+Informação do tempo passado em cada planeta e anos JavaLar.
+Exibição das posições dos bugs e desenvolvedores.
+Detecção de planetas ao norte e ao sul de Java.
+Verificação de alinhamentos entre planetas.
+Cálculo da distância entre os planetas.
+Cálculo da distância euclidiana entre os planetas.
+Exibição da velocidade de translação de cada planeta.
+
+- Relatório Final:
+
+Número de colisões de bugs e desenvolvedores por planeta.
+Nome, velocidade de rotação e velocidade média de translação de cada planeta.
+Informações sobre planetas que explodiram.
+Total de instantes solicitados pelo usuário.
+Tempo passado em cada planeta e anos JavaLar.
+Resumo sobre cada planeta-linguagem pertencente ao JavaLar.
