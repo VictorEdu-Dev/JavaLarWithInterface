@@ -1,5 +1,20 @@
+package execute;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import execute.suport.Historico;
+import planets.AstroLinguagem;
+import planets.Meteoro;
+import planets.extern.Bug;
+import planets.extern.Desenvolvedor;
+import planets.stars.CLanguage;
+import planets.stars.CPlusPlus;
+import planets.stars.CSharp;
+import planets.stars.Java;
+import planets.stars.JavaScript;
+import planets.stars.PHP;
+import planets.stars.Python;
+import planets.stars.RubyOnRails;
 
 public class JavaLar {
 	private ArrayList<AstroLinguagem> astros; // contémm os planetas já iniciados no construtor

@@ -1,3 +1,4 @@
+package planets;
 
 public abstract class AstroLinguagem {
 		private String nome;

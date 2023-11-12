@@ -1,5 +1,10 @@
+package execute.suport;
+
 import java.util.ArrayList;
 import java.util.List;
+import execute.JavaLar;
+import planets.AstroLinguagem;
+import planets.Meteoro;
 
 public class VerificadorDeColisoes {
 	private boolean verificador;
@@ -44,9 +49,9 @@ public class VerificadorDeColisoes {
 	
 	// identifica o corpo estranho e chama funções de verificar colisao
 	private void verificarColisao(AstroLinguagem astro, Meteoro met) {
-		if(met.identificador.equals("DEV")) {
+		if(met.getIdentificador().equals("DEV")) {
 			colisaoDev(astro, met);
-		} else if (met.identificador.equals("BUG")) {
+		} else if (met.getIdentificador().equals("BUG")) {
 			colisaoBug(astro, met);
 		} else {
 			return;

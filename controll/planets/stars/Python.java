@@ -1,3 +1,5 @@
+package planets.stars;
+import planets.AstroLinguagem;
 
 public final class Python extends AstroLinguagem {
 	private String resumo;

@@ -1,4 +1,7 @@
+package execute.suport;
 import java.util.ArrayList;
+
+import planets.AstroLinguagem;
 
 public class Historico {
 	private ArrayList<AstroLinguagem> astros;

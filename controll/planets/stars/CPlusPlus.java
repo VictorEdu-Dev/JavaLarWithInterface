@@ -1,3 +1,5 @@
+package planets.stars;
+import planets.AstroLinguagem;
 
 public class CPlusPlus extends AstroLinguagem {
 	private String resumo;

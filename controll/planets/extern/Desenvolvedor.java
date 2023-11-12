@@ -1,4 +1,8 @@
+package planets.extern;
 import java.util.ArrayList;
+
+import planets.Meteoro;
+import util.GeradorXYJavaLar;
 
 public class Desenvolvedor extends Meteoro {
 	protected ArrayList <Desenvolvedor> desenvolvedores;
@@ -6,7 +10,7 @@ public class Desenvolvedor extends Meteoro {
 	
 	public Desenvolvedor(int coordX, int coordY) {
 		super(coordX, coordY);
-		identificador = "DEV";
+		setIdentificador("DEV");
 	}
 	
 	// gerador de desenvolvedores conforme uma quantidade desejada

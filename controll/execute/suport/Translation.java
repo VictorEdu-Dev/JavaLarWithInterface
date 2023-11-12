@@ -1,3 +1,7 @@
+package execute.suport;
+import execute.JavaLar;
+import planets.AstroLinguagem;
+import util.Calculus;
 
 public class Translation {
 	protected AstroLinguagem astro;

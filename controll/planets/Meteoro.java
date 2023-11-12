@@ -1,6 +1,9 @@
+package planets;
+
+import util.GeradorXYJavaLar;
 
 public abstract class Meteoro {
-	protected String identificador;
+	private String identificador;
 	protected GeradorXYJavaLar gerador;
 	private int coordX;
 	private int coordY;
@@ -24,5 +27,9 @@ public abstract class Meteoro {
 	
 	public String getIdentificador() {
 		return identificador;
+	}
+	
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
 	}
 }

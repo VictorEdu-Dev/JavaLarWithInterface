@@ -1,4 +1,5 @@
-import Utilidades.*;
+package util;
+import planets.AstroLinguagem;
 
 public class Calculus {
 	private Utilities potencia;

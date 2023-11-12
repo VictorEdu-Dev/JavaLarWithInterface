@@ -1,3 +1,9 @@
+package execute;
+import execute.suport.Translation;
+import execute.suport.VerificadorDeColisoes;
+import planets.AstroLinguagem;
+import util.Calculus;
+
 public class Interceptador extends Calculus {
 	private Translation mover;
 	private VerificadorDeColisoes verify;

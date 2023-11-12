@@ -1,3 +1,6 @@
+package execute.suport;
+import planets.AstroLinguagem;
+
 // import java.util.List;
 
 public class Relatorio {

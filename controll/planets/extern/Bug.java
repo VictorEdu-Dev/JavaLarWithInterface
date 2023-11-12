@@ -1,4 +1,9 @@
+package planets.extern;
 import java.util.ArrayList;
+
+import planets.AstroLinguagem;
+import planets.Meteoro;
+import util.GeradorXYJavaLar;
 
 public class Bug extends Meteoro {
 	private ArrayList <Bug> bugs;
@@ -6,7 +11,7 @@ public class Bug extends Meteoro {
 	
 	public Bug(int coordX, int coordY) {
 		super(coordX, coordY);
-		identificador = "BUG";
+		setIdentificador("BUG");
 	}
 	
 	public void alterarVelocidade(AstroLinguagem astro) {
