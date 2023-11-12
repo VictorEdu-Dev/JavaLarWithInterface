@@ -1,7 +1,7 @@
 package frame;
 
 public class JUnit {
-	public static void main(String[] args) {
+	public JUnit() {
 		new FWindow();
 	}
 }
