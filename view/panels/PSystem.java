@@ -88,8 +88,8 @@ public class PSystem extends JPanel {
 		java.setLocation(pWidth, pHeidht);
 		java.setHorizontalAlignment(SwingConstants.CENTER);
 		java.setVerticalAlignment(SwingConstants.CENTER);
-		java.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		
+		java.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
 		ImageIcon icon = imageProcess("view/panels/planets/java.png", 
 				java.getWidth(), java.getHeight());
 		
@@ -106,7 +106,7 @@ public class PSystem extends JPanel {
 		python.setLocation(pWidth, pHeidht);
 		python.setHorizontalAlignment(SwingConstants.CENTER);
 		python.setVerticalAlignment(SwingConstants.CENTER);
-		python.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		python.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/python.png", 
 				python.getWidth(), python.getHeight());
@@ -124,7 +124,7 @@ public class PSystem extends JPanel {
 		javaScript.setLocation(pWidth, pHeidht);
 		javaScript.setHorizontalAlignment(SwingConstants.CENTER);
 		javaScript.setVerticalAlignment(SwingConstants.CENTER);
-		javaScript.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		javaScript.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/javaScript.png", 
 				javaScript.getWidth(), javaScript.getHeight());
@@ -143,7 +143,7 @@ public class PSystem extends JPanel {
 		rubyOnRails.setLocation(pWidth, pHeidht);
 		rubyOnRails.setHorizontalAlignment(SwingConstants.CENTER);
 		rubyOnRails.setVerticalAlignment(SwingConstants.CENTER);
-		rubyOnRails.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		rubyOnRails.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/ruby.png", 
 				rubyOnRails.getWidth(), rubyOnRails.getHeight());
@@ -162,7 +162,7 @@ public class PSystem extends JPanel {
 		php.setLocation(pWidth, pHeidht);
 		php.setHorizontalAlignment(SwingConstants.CENTER);
 		php.setVerticalAlignment(SwingConstants.CENTER);
-		php.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		php.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/php.png", 
 				php.getWidth(), php.getHeight());
@@ -182,7 +182,7 @@ public class PSystem extends JPanel {
 		cSharp.setLocation(pWidth, pHeidht);
 		cSharp.setHorizontalAlignment(SwingConstants.CENTER);
 		cSharp.setVerticalAlignment(SwingConstants.CENTER);
-		cSharp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		cSharp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/cSharp.png", 
 				cSharp.getWidth(), cSharp.getHeight());
@@ -202,7 +202,7 @@ public class PSystem extends JPanel {
 		cPlusPlus.setLocation(pWidth, pHeidht);
 		cPlusPlus.setHorizontalAlignment(SwingConstants.CENTER);
 		cPlusPlus.setVerticalAlignment(SwingConstants.CENTER);
-		cPlusPlus.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		cPlusPlus.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/cPlusPlus.png", 
 				cPlusPlus.getWidth(), cPlusPlus.getHeight());
@@ -224,7 +224,7 @@ public class PSystem extends JPanel {
 		cLanguage.setLocation(pWidth, pHeidht);
 		cLanguage.setHorizontalAlignment(SwingConstants.CENTER);
 		cLanguage.setVerticalAlignment(SwingConstants.CENTER);
-		cLanguage.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		cLanguage.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		ImageIcon icon = imageProcess("view/panels/planets/cLanguage.png", 
 				cLanguage.getWidth(), cLanguage.getHeight());
@@ -233,7 +233,7 @@ public class PSystem extends JPanel {
 	}
 	
 	// Caracteriza o ícone do planeta
-	private ImageIcon imageProcess(String url, int width, int height) {
+	public static ImageIcon imageProcess(String url, int width, int height) {
 		ImageIcon icon = new ImageIcon(url);
 		Image resizedImage = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		ImageIcon resizedIcon = new ImageIcon(resizedImage);
