@@ -2,6 +2,7 @@ package panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -12,7 +13,7 @@ import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class PSystem extends JPanel {
-	private static final int width = 1000;
+	private static final int width = 990;
 	private static final int height = 708;
 	
 	private JLabel java;
@@ -28,8 +29,27 @@ public class PSystem extends JPanel {
 		iniatilizeSystem();
 	}
 
+//	protected void paintComponent (Graphics g) {
+//		super.paintComponent(g);
+//		
+//		int tam = 236/5;
+//		
+//		int width = getWidth();
+//		int height = getHeight();
+//		
+//		g.setColor(Color.GRAY);
+//		
+//		for (int y = 0; y < height; y+= tam) {
+//			g.drawLine(0, y, width, y);
+//		}
+//		
+//		for (int x = 0; x < width; x += tam) {
+//			g.drawLine(x, 0, x, height);
+//		}	
+//	}
+	
 	// Inicializa o painel
-	private void iniatilizeSystem() {
+	private void iniatilizeSystem() {	
 		setLayout(null);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		setBackground(Color.decode("#FFE4B5"));
