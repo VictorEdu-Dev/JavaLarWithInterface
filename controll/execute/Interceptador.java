@@ -1,142 +1,116 @@
 package execute;
+
+import java.util.ArrayList;
+import java.util.List;
 import execute.suport.Translation;
 import execute.suport.VerificadorDeColisoes;
 import planets.AstroLinguagem;
 import util.Calculus;
 
 public class Interceptador extends Calculus {
-	private Translation mover;
-	private VerificadorDeColisoes verify;
+	private JavaLar init;
+	private VerificadorDeColisoes verificadorDeColisoes;
 	private boolean verificador;
-	private int time;
 
 	public Interceptador() {
-		mover = new Translation();
+		this.init = new JavaLar();
+		this.verificadorDeColisoes = new VerificadorDeColisoes();
 	}
 
-	public void iniciarMenu(JavaLar init) {
-		printSymbol(42, "=");
-		exibirCoordMet(init);
-		printSymbol(42, "=");
-		executarJavaLar(init, time);
-		printSymbol(42, "=");
+	public Interceptador(int time, int index) {
+		this.init = new JavaLar();
+		this.verificadorDeColisoes = new VerificadorDeColisoes();
+
+		iniciarMenu(time, index);
+		verificarColisao();
+	}
+
+	public void iniciarMenu(int time, int index) {
+		executarJavaLar(time, index);
 		verificador = init.verificarExistenciaDoSistema();
 		init.getRegister().setNumInstantes(time);
 	}
 
-	private void executarJavaLar(JavaLar init, int time) {
-		System.out.println();
-		System.out.println("ANDAMENTO DO JAVALAR ");
-		for (int i = 0; i < init.obterArrayDeAstros().size(); i++) {
-			mover.mover(init.getAstro(i), time, init);
-		}
-		System.out.println();
+	private void executarJavaLar(int time, int index) {
+		Translation trans = new Translation();
+		ArrayList<AstroLinguagem> arrayDeAstros = init.obterArrayDeAstros();
+
+		AstroLinguagem astro = arrayDeAstros.get(index);
+		trans.mover(astro, time, init);
 	}
 
-	public void setTime(int time) {
-		this.time = time;
-	}
-	
-	public void showPrint(JavaLar init) {
-		exibirPosicaoPlanetas(init);
-		printSymbol(42, "=");
-		exibirDistanciaEucliana(init);
-		printSymbol(42, "=");
-		exibirVelocidades(init);
-		printSymbol(42, "=");
-		exibirInfoMet(init);
-		printSymbol(42, "=");
-		exibirLocalizacaoPlanetaria(init);
+
+	private void verificarColisao() {
+		verificadorDeColisoes.verificarColisao(init);
 	}
 
-	private void exibirLocalizacaoPlanetaria(JavaLar init) {
-		int numPlanetasAoNorte = 0;
-		int numPlanetasAoSul = 0;
+	public List<Integer[]> obterLocalizacaoPlanetaria() {
+		List<Integer[]> localizacaoPlanetaria = new ArrayList<>();
 		int coordenadaYJava = init.getAstro(0).getPosY();
 
 		for (AstroLinguagem planeta : init.obterArrayDeAstros()) {
+			Integer[] posicao = {planeta.getPosX(), planeta.getPosY()};
+
 			if (planeta.getPosY() > coordenadaYJava && !planeta.equals(init.getAstro(0))) {
-				numPlanetasAoNorte++;
+				localizacaoPlanetaria.add(posicao);
 			} else if (planeta.getPosY() <= coordenadaYJava) {
-				numPlanetasAoSul++;
+				localizacaoPlanetaria.add(posicao);
 			}
 		}
 
-		System.out.println("==========================================");
-		System.out.println("Número de planetas ao norte: " + numPlanetasAoNorte);
-		System.out.println("Número de planetas ao sul: " + numPlanetasAoSul);
-		System.out.println("==========================================");
+		return localizacaoPlanetaria;
 	}
 
-	private void exibirDistanciaEucliana(JavaLar init) {
-		double distancia;
-
-		for (AstroLinguagem astroA : init.obterArrayDeAstros()) {
-			for (AstroLinguagem astroB : init.obterArrayDeAstros()) {
-				if (astroA != astroB && astroA != init.getAstro(0) && astroB != init.getAstro(0)) {
-					distancia = calcularDistance(astroA, astroB);
-					System.out.printf("DISTÂNCIA ENTRE (%S) E (%S):%n", astroA.getNome(), astroB.getNome());
-					System.out.printf("%.2f dist%n", distancia);
-				}
-			}
-			System.out.println();
-		}
+	public List<Integer> obterQuantidades() {
+		List<Integer> quantidades = new ArrayList<>();
+		quantidades.add(init.getQtdeBug());
+		quantidades.add(init.getQtdeDev());
+		quantidades.add(init.obterArrayDeBugs().size());
+		quantidades.add(init.obterArrayDeDevs().size());
+		return quantidades;
 	}
 
-	public void verificarColisao(JavaLar init) {
-		verify = new VerificadorDeColisoes();
-		verify.verificarColisao(init);
-	}
-
-	private void exibirInfoMet(JavaLar init) {
-		System.out.println("Número de bugs adicionados: " + init.getQtdeBug());
-		System.out.println("Número de desenvolvedores adicionados: " + init.getQtdeDev());
-		printSymbol(42, "*");
-		System.out.println("Quantidade de bugs atualmente: " + init.obterArrayDeBugs().size());
-		System.out.println("Quantidade de desenvolvedores atualmente: " + init.obterArrayDeDevs().size());
-		System.out.println();
-	}
-
-	private void exibirCoordMet(JavaLar init) {
-		System.out.println();
-		System.out.println("POSIÇÃO DOS BUGS INSERIDOS: ");
+	public List<Integer[]> obterCoordMet() {
+		List<Integer[]> coordMet = new ArrayList<>();
 		for (int i = 0; i < init.obterArrayDeBugs().size(); i++) {
-			System.out.println("(" + init.getBug(i).getCoordX() + ", " + init.getBug(i).getCoordY() + ")");
+			Integer[] coordenadas = {init.getBug(i).getCoordX(), init.getBug(i).getCoordY()};
+			coordMet.add(coordenadas);
 		}
-		System.out.println();
-		System.out.println("POSIÇÃO DOS DESENVOLVEDORES INSERIDOS: ");
 		for (int i = 0; i < init.obterArrayDeDevs().size(); i++) {
-			System.out.println("(" + init.getDev(i).getCoordX() + ", " + init.getDev(i).getCoordY() + ")");
+			Integer[] coordenadas = {init.getDev(i).getCoordX(), init.getDev(i).getCoordY()};
+			coordMet.add(coordenadas);
 		}
-		System.out.println();
+		return coordMet;
 	}
 
-	private void exibirPosicaoPlanetas(JavaLar init) {
-		System.out.println();
-		System.out.println("POSIÇÃO DOS PLANETAS APÓS " + time + " und");
+	public List<Integer[]> obterPosicaoPlanetas() {
+		List<Integer[]> posicaoPlanetas = new ArrayList<>();
 		for (int i = 0; i < init.obterArrayDeAstros().size(); i++) {
-			System.out.printf(init.getAstro(i).getNome());
-			System.out.println(": (" + init.getAstro(i).getPosX() + ", " + init.getAstro(i).getPosY() + ")");
+			Integer[] posicao = {init.getAstro(i).getPosX(), init.getAstro(i).getPosY()};
+			posicaoPlanetas.add(posicao);
 		}
-		System.out.println();
+		return posicaoPlanetas;
 	}
 
-	private void exibirVelocidades(JavaLar init) {
-		System.out.println("VELOCIDADE DOS PLANETAS: ");
+	public List<Integer> obterVelocidades() {
+		List<Integer> velocidades = new ArrayList<>();
 		for (AstroLinguagem astro : init.obterArrayDeAstros()) {
-			System.out.printf(astro.getNome() + ": " + astro.getVelocidadeDeTranslacao() + " pos/und%n");
+			velocidades.add(astro.getVelocidadeDeTranslacao());
 		}
-		System.out.println();
+		return velocidades;
 	}
 
-	public boolean getVerificador() {
+	public boolean isVerificador() {
 		return verificador;
 	}
 
-	private void printSymbol(int num, String symbol) {
-		for (int i = 0; i < num; i++) {
-			System.out.print(symbol);
-		}
-		System.out.println();
+	public JavaLar getInit() {
+		return init;
 	}
+
+	public VerificadorDeColisoes getVerificadorDeColisoes() {
+		return verificadorDeColisoes;
+	}
+
+
 }

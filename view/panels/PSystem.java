@@ -2,256 +2,111 @@ package panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
 
 @SuppressWarnings("serial")
 public class PSystem extends JPanel {
 	private static final int width = 990;
 	private static final int height = 708;
-	
-	private JLabel java;
-	private JLabel python;
-	private JLabel javaScript;
-	private JLabel rubyOnRails;
-	private JLabel php;
-	private JLabel cSharp;
-	private JLabel cPlusPlus;
-	private JLabel cLanguage;
-	
+	private static final int rows = 16;
+	private static final int columns = 16;
+
+	private ArrayList<JLabel> dataMatrix;
+	private JPanel[][] panels;
+
 	public PSystem() {
 		iniatilizeSystem();
 	}
 
-//	protected void paintComponent (Graphics g) {
-//		super.paintComponent(g);
-//		
-//		int tam = 236/5;
-//		
-//		int width = getWidth();
-//		int height = getHeight();
-//		
-//		g.setColor(Color.GRAY);
-//		
-//		for (int y = 0; y < height; y+= tam) {
-//			g.drawLine(0, y, width, y);
-//		}
-//		
-//		for (int x = 0; x < width; x += tam) {
-//			g.drawLine(x, 0, x, height);
-//		}	
-//	}
-	
 	// Inicializa o painel
-	private void iniatilizeSystem() {	
-		setLayout(null);
+	private void iniatilizeSystem() {
+		configurePanel();
+		initializeObjectsPlanet();
+		createGrid();
+		adjustPlanets();
+		addPlanets();
+	}
+
+	private void configurePanel() {
+		setLayout(new GridLayout(15, 15));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		setBackground(Color.decode("#FFE4B5"));
 		setPreferredSize(new Dimension(width, height));
 		revalidate();
-		
-		initializeObjectsPlanet();
-		adjustPlanets();
-		addPlanets();
+		repaint();
 	}
-	
+
 	// Adiciona planetas ao painel
-		private void addPlanets() {
-			add(java);
-			add(python);
-			add(javaScript);
-			add(rubyOnRails);
-			add(php);
-			add(cSharp);
-			add(cPlusPlus);
-			add(cLanguage);
-		}
+	private void addPlanets() {
+		/*
+		 * Cada entidade é adicionada a um 
+		 * vetor que representa um plano x, 
+		 * y bidimensional. Na ordem em que
+		 * existem na lista, são adicioandas
+		 * ao painel pelo seu índice corres-
+		 * pondente.
+		 * */
+		panels[8][8].add(dataMatrix.get(0));
+		panels[7][8].add(dataMatrix.get(1));
+		panels[6][8].add(dataMatrix.get(2));
+		panels[5][8].add(dataMatrix.get(3));
+		panels[4][8].add(dataMatrix.get(4));
+		panels[3][8].add(dataMatrix.get(5));
+		panels[2][8].add(dataMatrix.get(6));
+		panels[1][8].add(dataMatrix.get(7));
+	}
 
 	// Chame métodos que criam planetas
 	private void adjustPlanets() {
-		createJava();
-		createPython();
-		createJavaScript();
-		createRubyOnRails();
-		createPHP();
-		createCSharp();
-		createCPlusPlus();
-		createCLanguage();
+		initializeComponents("java");
+		initializeComponents("python");
+		initializeComponents("javaScript");
+		initializeComponents("ruby");
+		initializeComponents("php");
+		initializeComponents("cSharp");
+		initializeComponents("cPlusPlus");
+		initializeComponents("cLanguage");
 	}
 
 	// Inicializa os objetos planeta
 	private void initializeObjectsPlanet() {
-		java = new JLabel();
-		python = new JLabel();
-		javaScript = new JLabel();
-		rubyOnRails = new JLabel();
-		php = new JLabel();
-		cSharp = new JLabel();
-		cPlusPlus = new JLabel();
-		cLanguage = new JLabel();
-	}
-	
-
-	// Determina atributos de cada planeta
-	private void createJava() {
-		java.setSize(50, 50);
-		
-		int pWidth = this.getWidth() / 2 - java.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2;
-		
-		java.setLocation(pWidth, pHeidht);
-		java.setHorizontalAlignment(SwingConstants.CENTER);
-		java.setVerticalAlignment(SwingConstants.CENTER);
-		java.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-		ImageIcon icon = imageProcess("view/panels/planets/java.png", 
-				java.getWidth(), java.getHeight());
-		
-		java.setIcon(icon);
+		dataMatrix = new ArrayList<>();
 	}
 
-	private void createPython() {
-		python.setSize(40, 40);
-		
-		int pWidth = this.getWidth() / 2 - python.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - 5;
-		
-		python.setLocation(pWidth, pHeidht);
-		python.setHorizontalAlignment(SwingConstants.CENTER);
-		python.setVerticalAlignment(SwingConstants.CENTER);
-		python.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		ImageIcon icon = imageProcess("view/panels/planets/python.png", 
-				python.getWidth(), python.getHeight());
-		
-		python.setIcon(icon);
+	// Cria um efeito de grade com paineis
+	private void createGrid() {
+		panels = new JPanel[rows][columns];
+		for (int i = 1; i < rows; i++) {
+			for(int j = 1; j < columns; j++) {
+				panels[i][j] = new JPanel();
+				panels[i][j].setLayout(null);
+				panels[i][j].setBackground(Color.LIGHT_GRAY);
+				panels[i][j].setPreferredSize(new Dimension(40, 40));
+				panels[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				this.add(panels[i][j]);
+			}
+		}
 	}
-	
-	private void createJavaScript() {
-		javaScript.setSize(40, 40);
+
+	private void initializeComponents(String imageUrl) {
+		JLabel label = new JLabel();
 		
-		int pWidth = this.getWidth() / 2 - javaScript.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - javaScript.getHeight() - 10;
+		label.setSize(40, 40);
+		label.setLocation(12, 4);
 		
-		javaScript.setLocation(pWidth, pHeidht);
-		javaScript.setHorizontalAlignment(SwingConstants.CENTER);
-		javaScript.setVerticalAlignment(SwingConstants.CENTER);
-		javaScript.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		ImageIcon icon = imageProcess("view/panels/planets/"+ imageUrl +".png", 
+				label.getWidth(), label.getHeight());
 		
-		ImageIcon icon = imageProcess("view/panels/planets/javaScript.png", 
-				javaScript.getWidth(), javaScript.getHeight());
-		
-		javaScript.setIcon(icon);
+		label.setIcon(icon);
+		this.dataMatrix.add(label);
 	}
-	
-	private void createRubyOnRails() {
-		rubyOnRails.setSize(40, 40);
-		
-		int pWidth = this.getWidth() / 2 - rubyOnRails.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - javaScript.getHeight() 
-				- rubyOnRails.getHeight() - 15;
-		
-		rubyOnRails.setLocation(pWidth, pHeidht);
-		rubyOnRails.setHorizontalAlignment(SwingConstants.CENTER);
-		rubyOnRails.setVerticalAlignment(SwingConstants.CENTER);
-		rubyOnRails.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		ImageIcon icon = imageProcess("view/panels/planets/ruby.png", 
-				rubyOnRails.getWidth(), rubyOnRails.getHeight());
-		
-		rubyOnRails.setIcon(icon);
-	}
-	
-	private void createPHP() {
-		php.setSize(40, 40);
-		
-		int pWidth = this.getWidth() / 2 - php.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - javaScript.getHeight() 
-				- rubyOnRails.getHeight() - php.getHeight() - 20;
-		
-		php.setLocation(pWidth, pHeidht);
-		php.setHorizontalAlignment(SwingConstants.CENTER);
-		php.setVerticalAlignment(SwingConstants.CENTER);
-		php.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		ImageIcon icon = imageProcess("view/panels/planets/php.png", 
-				php.getWidth(), php.getHeight());
-		
-		php.setIcon(icon);
-	}
-	
-	private void createCSharp() {
-		cSharp.setSize(40, 40);
-		
-		int pWidth = this.getWidth() / 2 - cSharp.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - javaScript.getHeight()
-				- rubyOnRails.getHeight() - php.getHeight()
-				- cSharp.getHeight() - 25;
-		
-		cSharp.setLocation(pWidth, pHeidht);
-		cSharp.setHorizontalAlignment(SwingConstants.CENTER);
-		cSharp.setVerticalAlignment(SwingConstants.CENTER);
-		cSharp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		ImageIcon icon = imageProcess("view/panels/planets/cSharp.png", 
-				cSharp.getWidth(), cSharp.getHeight());
-		
-		cSharp.setIcon(icon);
-	}
-	
-	private void createCPlusPlus() {
-		cPlusPlus.setSize(40, 40);
-		
-		int pWidth = this.getWidth() / 2 - cPlusPlus.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - javaScript.getHeight()
-				- rubyOnRails.getHeight() - php.getHeight()
-				- cSharp.getHeight() - cLanguage.getHeight() - cPlusPlus.getHeight() - 30;
-		
-		cPlusPlus.setLocation(pWidth, pHeidht);
-		cPlusPlus.setHorizontalAlignment(SwingConstants.CENTER);
-		cPlusPlus.setVerticalAlignment(SwingConstants.CENTER);
-		cPlusPlus.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		ImageIcon icon = imageProcess("view/panels/planets/cPlusPlus.png", 
-				cPlusPlus.getWidth(), cPlusPlus.getHeight());
-		
-		cPlusPlus.setIcon(icon);
-	}
-	
-	
-	private void createCLanguage() {
-		cLanguage.setSize(40, 40);
-		
-		int pWidth = this.getWidth() / 2 - cLanguage.getWidth() / 2;
-		int pHeidht = this.getHeight() / 2 - java.getHeight() / 2 
-				- python.getHeight() - javaScript.getHeight()
-				- rubyOnRails.getHeight() - php.getHeight()
-				- cSharp.getHeight() - cLanguage.getHeight() 
-				- cPlusPlus.getHeight() - 35;
-		
-		cLanguage.setLocation(pWidth, pHeidht);
-		cLanguage.setHorizontalAlignment(SwingConstants.CENTER);
-		cLanguage.setVerticalAlignment(SwingConstants.CENTER);
-		cLanguage.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
-		ImageIcon icon = imageProcess("view/panels/planets/cLanguage.png", 
-				cLanguage.getWidth(), cLanguage.getHeight());
-		
-		cLanguage.setIcon(icon);
-	}
-	
+
 	// Caracteriza o ícone do planeta
 	public static ImageIcon imageProcess(String url, int width, int height) {
 		ImageIcon icon = new ImageIcon(url);
@@ -261,12 +116,31 @@ public class PSystem extends JPanel {
 	}
 
 	// Getters para acesso posterior
-	
 	public int getWidth() {
 		return width;
 	}
 
 	public int getHeight() {
 		return height;
+	}
+
+	public static int getRow() {
+		return rows;
+	}
+
+	public static int getColumns() {
+		return columns;
+	}
+	
+	public JPanel[][] getPanels() {
+		return panels;
+	}
+	
+	public void setPanels(JLabel label, int x, int y) {
+		this.panels[x][y].add(label);
+	}
+
+	public ArrayList<JLabel> getDataMatrix() {
+		return dataMatrix;
 	}
 }

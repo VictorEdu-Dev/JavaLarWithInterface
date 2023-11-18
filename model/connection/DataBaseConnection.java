@@ -42,7 +42,6 @@ public class DataBaseConnection {
 			if (connection != null) {
 				System.out.println("Conexão bem-sucedida!");
 			}
-			connection.close();
 		} catch (SQLException ex) {
 			System.out.println("Conexão com MYSQL não realizada");
 			ex.printStackTrace();

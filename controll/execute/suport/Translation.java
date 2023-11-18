@@ -4,7 +4,6 @@ import planets.AstroLinguagem;
 import util.Calculus;
 
 public class Translation {
-	protected AstroLinguagem astro;
 	private Calculus calculo;
 	private VerificadorDeColisoes verify;
 	private int deslocamento;

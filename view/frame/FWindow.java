@@ -1,12 +1,13 @@
 package frame;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.sound.sampled.Clip;
+import java.io.File;
+import javax.swing.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import panels.*;
 
 @SuppressWarnings("serial")
@@ -23,23 +24,21 @@ public class FWindow extends JFrame {
 	// Elementos do frame
 	private void createWindow() {
 		adjustFrame();
-
-
-		planetarium = new PSystem();
-		buttonPanel = new PButtons();
-
-
-		add(planetarium);
-		add(buttonPanel);
-
-
-		setVisible(true);
-
-		
+		initializePanels();
+		addComponents();
 		verifyCloseOperation();
 	}
-	
-	
+
+	private void addComponents() {
+		add(planetarium);
+		add(buttonPanel);
+	}
+
+	private void initializePanels() {
+		planetarium = new PSystem();
+		buttonPanel = new PButtons();
+	}
+
 	// Configurações iniciais do frame
 	private void adjustFrame() {
 		setLayout(new FlowLayout());	
@@ -48,6 +47,8 @@ public class FWindow extends JFrame {
 		setTitle("Javalar System");
 		setMinimumSize(new Dimension(600, 400));
 		getContentPane().setBackground(Color.decode("#FFFACD"));
+		setVisible(true);
+		playAudio();
 	}
 
 	// Verificar eventos de fechamento da janela
@@ -55,7 +56,12 @@ public class FWindow extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+				int option = JOptionPane.showConfirmDialog(
+						null, 
+						"Deseja realmente sair?", 
+						"Confirmação", 
+						JOptionPane.YES_NO_OPTION
+						);
 
 				if (option == JOptionPane.YES_OPTION) {
 					dispose();
@@ -64,6 +70,28 @@ public class FWindow extends JFrame {
 				}
 			}
 		});
+	}
+
+	// Toca um áudio
+	private void playAudio() {
+		try {
+			// Carrega o arquivo de áudio
+			File arquivoAudio = new File(
+					"C:\\Central de Desenvolvimento\\Java\\Desktop\\"
+							+ "Workspace\\JavaLarSystemInterface\\"
+							+ "Arquivos\\audio\\space.wav"
+					);
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(arquivoAudio);
+
+			// Cria um clip de áudio
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+
+			// Reproduz o áudio
+			clip.start();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	// Getters para uso posterior
