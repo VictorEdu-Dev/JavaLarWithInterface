@@ -2,27 +2,17 @@ package execute;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import execute.suport.Translation;
-import execute.suport.VerificadorDeColisoes;
 import planets.AstroLinguagem;
 import util.Calculus;
 
 public class Interceptador extends Calculus {
 	private JavaLar init;
-	private VerificadorDeColisoes verificadorDeColisoes;
 	private boolean verificador;
 
 	public Interceptador() {
 		this.init = new JavaLar();
-		this.verificadorDeColisoes = new VerificadorDeColisoes();
-	}
-
-	public Interceptador(int time, int index) {
-		this.init = new JavaLar();
-		this.verificadorDeColisoes = new VerificadorDeColisoes();
-
-		iniciarMenu(time, index);
-		verificarColisao();
 	}
 
 	public void iniciarMenu(int time, int index) {
@@ -34,14 +24,8 @@ public class Interceptador extends Calculus {
 	private void executarJavaLar(int time, int index) {
 		Translation trans = new Translation();
 		ArrayList<AstroLinguagem> arrayDeAstros = init.obterArrayDeAstros();
-
 		AstroLinguagem astro = arrayDeAstros.get(index);
 		trans.mover(astro, time, init);
-	}
-
-
-	private void verificarColisao() {
-		verificadorDeColisoes.verificarColisao(init);
 	}
 
 	public List<Integer[]> obterLocalizacaoPlanetaria() {
@@ -100,6 +84,14 @@ public class Interceptador extends Calculus {
 		return velocidades;
 	}
 
+	public void setBug(int qtde) {
+		init.setBugs(qtde);
+	}
+	
+	public void setDev(int qtde) {
+		init.setDevs(qtde);
+	}
+	
 	public boolean isVerificador() {
 		return verificador;
 	}
@@ -107,10 +99,4 @@ public class Interceptador extends Calculus {
 	public JavaLar getInit() {
 		return init;
 	}
-
-	public VerificadorDeColisoes getVerificadorDeColisoes() {
-		return verificadorDeColisoes;
-	}
-
-
 }

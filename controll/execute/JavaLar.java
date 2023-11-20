@@ -1,7 +1,6 @@
 package execute;
-import java.util.ArrayList;
-import java.util.Scanner;
 
+import java.util.ArrayList;
 import execute.suport.Historico;
 import planets.AstroLinguagem;
 import planets.Meteoro;
@@ -21,7 +20,6 @@ public class JavaLar {
 	private ArrayList<Meteoro> bugs; // estão no mesmo plano dos planetas
 	private ArrayList<Meteoro> devs; // estão no mesmo plano dos planetas
 	private Historico register;
-	private Scanner entrada;
 	private int qtdeBug;
 	private int qtdeDev;
 	
@@ -30,7 +28,6 @@ public class JavaLar {
 		bugs = new ArrayList<Meteoro>();
 		devs = new ArrayList<Meteoro>();
 		register = new Historico();
-		entrada = new Scanner(System.in);
 		iniciarSistema();
 	}
 
@@ -68,16 +65,12 @@ public class JavaLar {
 		}
 	}
 	
-	public void addBugs() {
-		int bugsQtde;
-		bugsQtde = entrada.nextInt();
+	public void setBugs(int bugsQtde) {
 		qtdeBug = getQtdeBug() + bugsQtde;
 		bugs.addAll(new Bug(0, 0).bugarSistema(bugsQtde));
 	}
 
-	public void addDevs() {
-		int devsQtde;
-		devsQtde = entrada.nextInt();
+	public void setDevs(int devsQtde) {
 		qtdeDev = getQtdeDev() + devsQtde;
 		devs.addAll(new Desenvolvedor(0, 0).desenvolverSistema(devsQtde));
 	}

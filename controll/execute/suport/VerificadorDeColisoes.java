@@ -8,11 +8,13 @@ import planets.Meteoro;
 
 public class VerificadorDeColisoes {
 	private boolean verificador;
+	private List<Meteoro> bugsToRemove;
+	private List<Meteoro> devsToRemove; 
 	
 	
 	public void verificarColisao(JavaLar init) {
-	List<Meteoro> bugsToRemove = new ArrayList<>();
-	List<Meteoro> devsToRemove = new ArrayList<>(); 
+	bugsToRemove = new ArrayList<>();
+	devsToRemove = new ArrayList<>(); 
 	List<AstroLinguagem> astrosCopy = new ArrayList<>(init.obterArrayDeAstros());
 	
 	// Verificar colisões entre bugs e planetas
@@ -25,7 +27,6 @@ public class VerificadorDeColisoes {
                 if(astro != null && astro.getVelocidadeDeTranslacao() <= 0) {
                 	astro.setExplodiu(verificador); // primeiro registra que o planeta explodiu
     				init.obterArrayDeAstros().remove(astro); //remove do JavaLar
-    				System.out.printf("%s explodiu!%n", astro.getNome());
     				init.getRegister().setAstrosLista(astro); // depois registra o planeta
     				init.getRegister().addAtualizacaoList(astro); 
     			}
@@ -62,7 +63,6 @@ public class VerificadorDeColisoes {
 	private boolean colisaoBug(AstroLinguagem astro, Meteoro met) {
 		if(astro.getPosX() == met.getCoordX() && astro.getPosY() == met.getCoordY()) {
 			met.alterarVelocidade(astro);
-			System.out.println("Alerta! Um bug colidiu com o planeta "+astro.getNome()+" na posição ("+astro.getPosX()+", "+astro.getPosY()+")");
 			astro.setNumBugsColididos();
 			verificador = true;
 			return true;
@@ -77,7 +77,6 @@ public class VerificadorDeColisoes {
 	private boolean colisaoDev(AstroLinguagem astro, Meteoro met) {
 		if(astro.getPosX() == met.getCoordX() && astro.getPosY() == met.getCoordY()) {
 			met.alterarVelocidade(astro);
-			System.out.println("Alerta! Um Dev pousou em "+astro.getNome()+" na posiçãoo ("+astro.getPosX()+", "+astro.getPosY()+")");
 			astro.setNumDevsColididos();
 			verificador = true;
 			return true;

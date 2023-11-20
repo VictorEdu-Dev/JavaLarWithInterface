@@ -2,23 +2,29 @@ package panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import panels.planets.LPlanet;
+import panels.planets.PCellGrid;
+
 @SuppressWarnings("serial")
 public class PSystem extends JPanel {
-	private static final int width = 990;
+	private static final int width = 708;
 	private static final int height = 708;
-	private static final int rows = 16;
-	private static final int columns = 16;
 
 	private ArrayList<JLabel> dataMatrix;
-	private JPanel[][] panels;
+	private ArrayList<JLabel> dataBug;
+	private ArrayList<JLabel> dataDev;
+	private PCellGrid[][] panels;
+	private Image image;
 
 	public PSystem() {
 		iniatilizeSystem();
@@ -27,17 +33,20 @@ public class PSystem extends JPanel {
 	// Inicializa o painel
 	private void iniatilizeSystem() {
 		configurePanel();
-		initializeObjectsPlanet();
-		createGrid();
 		adjustPlanets();
 		addPlanets();
 	}
 
 	private void configurePanel() {
 		setLayout(new GridLayout(15, 15));
-		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
 		setBackground(Color.decode("#FFE4B5"));
 		setPreferredSize(new Dimension(width, height));
+		image = Toolkit.getDefaultToolkit().getImage(
+				"C:\\Central de Desenvolvimento\\Java\\"
+				+ "Desktop\\Workspace\\JavaLarSystemInterface\\"
+				+ "Arquivos\\frame\\javaLar.png"
+				);
 		revalidate();
 		repaint();
 	}
@@ -52,6 +61,8 @@ public class PSystem extends JPanel {
 		 * ao painel pelo seu índice corres-
 		 * pondente.
 		 * */
+		panels = PCellGrid.createGrid(this);
+		
 		panels[8][8].add(dataMatrix.get(0));
 		panels[7][8].add(dataMatrix.get(1));
 		panels[6][8].add(dataMatrix.get(2));
@@ -64,55 +75,23 @@ public class PSystem extends JPanel {
 
 	// Chame métodos que criam planetas
 	private void adjustPlanets() {
-		initializeComponents("java");
-		initializeComponents("python");
-		initializeComponents("javaScript");
-		initializeComponents("ruby");
-		initializeComponents("php");
-		initializeComponents("cSharp");
-		initializeComponents("cPlusPlus");
-		initializeComponents("cLanguage");
-	}
-
-	// Inicializa os objetos planeta
-	private void initializeObjectsPlanet() {
 		dataMatrix = new ArrayList<>();
-	}
-
-	// Cria um efeito de grade com paineis
-	private void createGrid() {
-		panels = new JPanel[rows][columns];
-		for (int i = 1; i < rows; i++) {
-			for(int j = 1; j < columns; j++) {
-				panels[i][j] = new JPanel();
-				panels[i][j].setLayout(null);
-				panels[i][j].setBackground(Color.LIGHT_GRAY);
-				panels[i][j].setPreferredSize(new Dimension(40, 40));
-				panels[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				this.add(panels[i][j]);
-			}
-		}
-	}
-
-	private void initializeComponents(String imageUrl) {
-		JLabel label = new JLabel();
 		
-		label.setSize(40, 40);
-		label.setLocation(12, 4);
-		
-		ImageIcon icon = imageProcess("view/panels/planets/"+ imageUrl +".png", 
-				label.getWidth(), label.getHeight());
-		
-		label.setIcon(icon);
-		this.dataMatrix.add(label);
+		dataMatrix.add(new LPlanet("java"));
+		dataMatrix.add(new LPlanet("python"));
+		dataMatrix.add(new LPlanet("javaScript"));
+		dataMatrix.add(new LPlanet("ruby"));
+		dataMatrix.add(new LPlanet("php"));
+		dataMatrix.add(new LPlanet("cSharp"));
+		dataMatrix.add(new LPlanet("cPlusPlus"));
+		dataMatrix.add(new LPlanet("cLanguage"));
 	}
-
-	// Caracteriza o ícone do planeta
-	public static ImageIcon imageProcess(String url, int width, int height) {
-		ImageIcon icon = new ImageIcon(url);
-		Image resizedImage = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		ImageIcon resizedIcon = new ImageIcon(resizedImage);
-		return resizedIcon;
+	
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (image != null) {
+            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+        }
 	}
 
 	// Getters para acesso posterior
@@ -122,14 +101,6 @@ public class PSystem extends JPanel {
 
 	public int getHeight() {
 		return height;
-	}
-
-	public static int getRow() {
-		return rows;
-	}
-
-	public static int getColumns() {
-		return columns;
 	}
 	
 	public JPanel[][] getPanels() {
@@ -142,5 +113,13 @@ public class PSystem extends JPanel {
 
 	public ArrayList<JLabel> getDataMatrix() {
 		return dataMatrix;
+	}
+
+	public ArrayList<JLabel> getDataBug() {
+		return dataBug;
+	}
+
+	public ArrayList<JLabel> getDataDev() {
+		return dataDev;
 	}
 }

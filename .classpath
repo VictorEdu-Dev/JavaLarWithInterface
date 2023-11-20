@@ -5,9 +5,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="libconnector/mysql-connector-j-8.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Central de Desenvolvimento/Java/Desktop/Workspace/JavaLarSystemInterface/Projeto/lib/mysql-connector-j-8.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-8.1.0.jar"/>
 	<classpathentry kind="src" path="controll"/>
 	<classpathentry kind="src" path="view"/>
 	<classpathentry kind="src" path="model"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
