@@ -6,33 +6,34 @@ import java.util.List;
 import execute.suport.Translation;
 import planets.AstroLinguagem;
 import util.Calculus;
+import util.Coordinates;
 
 public class Interceptador extends Calculus {
 	private JavaLar init;
+	private Translation trans;
 	private boolean verificador;
 
 	public Interceptador() {
-		this.init = new JavaLar();
+		init = new JavaLar();
+		trans = new Translation();
 	}
-
-	public void iniciarMenu(int time, int index) {
-		executarJavaLar(time, index);
+	
+	public void executarJavaLar(int time, int index) {
+		trans.mover(init.getAstros().get(index), time, init);
 		verificador = init.verificarExistenciaDoSistema();
 		init.getRegister().setNumInstantes(time);
 	}
-
-	private void executarJavaLar(int time, int index) {
-		Translation trans = new Translation();
-		ArrayList<AstroLinguagem> arrayDeAstros = init.obterArrayDeAstros();
-		AstroLinguagem astro = arrayDeAstros.get(index);
-		trans.mover(astro, time, init);
+	
+	public void insertMetJavaLar(int qtdeBugs, int qtdeDevs) {
+		init.setBugs(qtdeBugs);
+		init.setDevs(qtdeDevs);
 	}
 
 	public List<Integer[]> obterLocalizacaoPlanetaria() {
 		List<Integer[]> localizacaoPlanetaria = new ArrayList<>();
 		int coordenadaYJava = init.getAstro(0).getPosY();
 
-		for (AstroLinguagem planeta : init.obterArrayDeAstros()) {
+		for (AstroLinguagem planeta : init.getAstros()) {
 			Integer[] posicao = {planeta.getPosX(), planeta.getPosY()};
 
 			if (planeta.getPosY() > coordenadaYJava && !planeta.equals(init.getAstro(0))) {
@@ -47,29 +48,38 @@ public class Interceptador extends Calculus {
 
 	public List<Integer> obterQuantidades() {
 		List<Integer> quantidades = new ArrayList<>();
-		quantidades.add(init.getQtdeBug());
-		quantidades.add(init.getQtdeDev());
+		quantidades.add(init.getBugs().size());
+		quantidades.add(init.getDevs().size());
 		quantidades.add(init.obterArrayDeBugs().size());
 		quantidades.add(init.obterArrayDeDevs().size());
 		return quantidades;
 	}
 
-	public List<Integer[]> obterCoordMet() {
-		List<Integer[]> coordMet = new ArrayList<>();
+	public List<Coordinates> getCoordMBugBack() {
+		List<Coordinates> coordMet = new ArrayList<>();
 		for (int i = 0; i < init.obterArrayDeBugs().size(); i++) {
-			Integer[] coordenadas = {init.getBug(i).getCoordX(), init.getBug(i).getCoordY()};
-			coordMet.add(coordenadas);
+			int x = init.getBug(i).getCoordX();
+			int y = init.getBug(i).getCoordY();
+			
+			coordMet.add(new Coordinates(x, y));
 		}
+		return coordMet;
+	}
+	
+	public List<Coordinates> getCoordMDevBack() {
+		List<Coordinates> coordMet = new ArrayList<>();
 		for (int i = 0; i < init.obterArrayDeDevs().size(); i++) {
-			Integer[] coordenadas = {init.getDev(i).getCoordX(), init.getDev(i).getCoordY()};
-			coordMet.add(coordenadas);
+			int x = init.getDev(i).getCoordX();
+			int y = init.getDev(i).getCoordY();
+			
+			coordMet.add(new Coordinates(x, y));
 		}
 		return coordMet;
 	}
 
 	public List<Integer[]> obterPosicaoPlanetas() {
 		List<Integer[]> posicaoPlanetas = new ArrayList<>();
-		for (int i = 0; i < init.obterArrayDeAstros().size(); i++) {
+		for (int i = 0; i < init.getAstros().size(); i++) {
 			Integer[] posicao = {init.getAstro(i).getPosX(), init.getAstro(i).getPosY()};
 			posicaoPlanetas.add(posicao);
 		}
@@ -78,12 +88,22 @@ public class Interceptador extends Calculus {
 
 	public List<Integer> obterVelocidades() {
 		List<Integer> velocidades = new ArrayList<>();
-		for (AstroLinguagem astro : init.obterArrayDeAstros()) {
+		for (AstroLinguagem astro : init.getAstros()) {
 			velocidades.add(astro.getVelocidadeDeTranslacao());
 		}
 		return velocidades;
 	}
 
+	
+	// Getters e setters para uso posterior
+	public int getQtdeBugs() {
+		return init.getBugs().size();
+	}
+	
+	public int getQtdeDevs() {
+		return init.getDevs().size();
+	}
+	
 	public void setBug(int qtde) {
 		init.setBugs(qtde);
 	}
@@ -98,5 +118,9 @@ public class Interceptador extends Calculus {
 
 	public JavaLar getInit() {
 		return init;
+	}
+
+	public Translation getTranslation() {
+		return trans;
 	}
 }

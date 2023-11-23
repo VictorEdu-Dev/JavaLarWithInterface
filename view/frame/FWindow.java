@@ -32,6 +32,7 @@ public class FWindow extends JFrame {
 	}
 
 	// Elementos do frame
+	
 	private void createWindow() {
 		adjustFrame();
 		initializePanels();
@@ -66,7 +67,7 @@ public class FWindow extends JFrame {
 
 	// Muda aparência da da interface
 	private static void setCustomUI(JFrame frame, Color color) {
-	//	UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		try {
 			UIManager.setLookAndFeel(new NimbusLookAndFeel());
 		} catch (UnsupportedLookAndFeelException e) {
@@ -75,6 +76,7 @@ public class FWindow extends JFrame {
 	}
 
 	// Verificar evento de fechamento da janela
+	
 	private void verifyCloseOperation() {
 		addWindowListener(new WindowAdapter() {
 			@Override

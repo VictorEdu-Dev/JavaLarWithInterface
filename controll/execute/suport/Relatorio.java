@@ -1,4 +1,7 @@
 package execute.suport;
+import java.util.ArrayList;
+import java.util.List;
+
 import planets.AstroLinguagem;
 
 // import java.util.List;
@@ -25,23 +28,18 @@ public class Relatorio {
 		}
 	}
 
-	private void instantesSolicitados(Historico register) {
-		// d) Quantos instantes foram solicitados pelo usuário
-		System.out.println("\nInstantes solicitados pelo usuário:");
-		System.out.println("	Número de instantes: " + register.getNumInstantes());
-
-		System.out.println("=============================================================");
+	private int instantesSolicitados(Historico register) {
+		return register.getNumInstantes();
 	}
 
-	private void planetasExplodidos(Historico register) {
-		// c) Se algum planeta explodiu ao longo da execução do sistema
-		System.out.println("\nPlanetas que explodiram: ");
+	private List<String> planetasExplodidos(Historico register) {
+		List<String> planets = new ArrayList<>(); 
 		for (AstroLinguagem planeta : register.getAstrosLista()) {
 			if (planeta.getExplodiu() == true) {
-				System.out.println("	"+planeta.getNome());
+				planets.add(planeta.getNome());
 			}
 		}
-		System.out.println("=============================================================");
+		return planets;
 	}
 
 	private void numBugsDevsColids(Historico register) {

@@ -3,7 +3,7 @@ import execute.JavaLar;
 import planets.AstroLinguagem;
 import util.Calculus;
 
-public class Translation {
+public class Translation extends Thread {
 	private Calculus calculo;
 	private VerificadorDeColisoes verify;
 	private int deslocamento;
@@ -23,14 +23,13 @@ public class Translation {
 	}
 
 
-
 	private void percorrerAcima(AstroLinguagem astro, JavaLar init) {
 		int appDeslocYUp = astro.getLimitYUp() - astro.getPosY(); // limite de delocamento em y para cima
 		if(astro.getPosX() == astro.getLimitXRigth() && astro.getPosY() >= astro.getLimitYDown()) {
 			if (deslocamento > appDeslocYUp) {
 				for(int i = 0; i < appDeslocYUp; i++) {
 					astro.setPosY(1); // desloca em Y
-			//		verify.verificarColisao(init);
+		//			verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
@@ -50,13 +49,13 @@ public class Translation {
 			if (deslocamento > appDeslocXRigth) {
 				for(int i = 0; i < appDeslocXRigth; i++) {
 					astro.setPosX(1); // desloca em X
-				//	verify.verificarColisao(init);
+			//		verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
 				for(int i = 0; i < deslocamento; i++) {
 					astro.setPosX(1);
-				//	verify.verificarColisao(init);
+			//		verify.verificarColisao(init);
 				}
 				deslocamento = 0;
 			}
@@ -90,16 +89,20 @@ public class Translation {
 			if (deslocamento > appDeslocXLeft) {
 				for(int i = 0; i < appDeslocXLeft; i++) {
 					astro.setPosX(-1); // desloca em X
-				//	verify.verificarColisao(init);
+			//		verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
 				for(int i = 0; i < deslocamento; i++) {
 					astro.setPosX(-1);
-				//	verify.verificarColisao(init);
+			//		verify.verificarColisao(init);
 				}
 				deslocamento = 0;
 			}
 		}
+	}
+	
+	public VerificadorDeColisoes getVerify() {
+		return verify;
 	}
 }

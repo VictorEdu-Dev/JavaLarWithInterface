@@ -14,14 +14,13 @@ import planets.stars.JavaScript;
 import planets.stars.PHP;
 import planets.stars.Python;
 import planets.stars.RubyOnRails;
+import util.Coordinates;
 
 public class JavaLar {
 	private ArrayList<AstroLinguagem> astros; // contémm os planetas já iniciados no construtor
 	private ArrayList<Meteoro> bugs; // estão no mesmo plano dos planetas
 	private ArrayList<Meteoro> devs; // estão no mesmo plano dos planetas
 	private Historico register;
-	private int qtdeBug;
-	private int qtdeDev;
 	
 	public JavaLar() {
 		astros = new ArrayList<AstroLinguagem>();
@@ -45,7 +44,18 @@ public class JavaLar {
 		register.setAstrosLista(astros);
 	}
 	
-	public ArrayList<AstroLinguagem> obterArrayDeAstros() {
+	public ArrayList<Coordinates> getCoordinatesPlanets() {
+		int sizeArrayPlanets = getAstros().size();
+		ArrayList<Coordinates> listCoord = new ArrayList<>();
+		for (int i = 0; i < sizeArrayPlanets; i++) {
+			int x = getAstros().get(i).getPosX();
+			int y = getAstros().get(i).getPosY();
+			listCoord.add(new Coordinates(x, y));
+		}
+		return listCoord;
+	}
+	
+	public ArrayList<AstroLinguagem> getAstros() {
 		return astros;
 	}
 	
@@ -66,12 +76,10 @@ public class JavaLar {
 	}
 	
 	public void setBugs(int bugsQtde) {
-		qtdeBug = getQtdeBug() + bugsQtde;
 		bugs.addAll(new Bug(0, 0).bugarSistema(bugsQtde));
 	}
 
 	public void setDevs(int devsQtde) {
-		qtdeDev = getQtdeDev() + devsQtde;
 		devs.addAll(new Desenvolvedor(0, 0).desenvolverSistema(devsQtde));
 	}
 	
@@ -91,12 +99,12 @@ public class JavaLar {
 		astros.remove(posicao);
 	}
 
-	public int getQtdeBug() {
-		return qtdeBug;
+	public ArrayList<Meteoro> getBugs() {
+		return bugs;
 	}
 
-	public int getQtdeDev() {
-		return qtdeDev;
+	public ArrayList<Meteoro> getDevs() {
+		return devs;
 	}
 	
 	public Historico getRegister() {

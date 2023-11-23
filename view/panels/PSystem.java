@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import panels.planets.LMeteor;
 import panels.planets.LPlanet;
 import panels.planets.PCellGrid;
 
@@ -21,8 +22,8 @@ public class PSystem extends JPanel {
 	private static final int height = 708;
 
 	private ArrayList<JLabel> dataMatrix;
-	private ArrayList<JLabel> dataBug;
-	private ArrayList<JLabel> dataDev;
+	private ArrayList<LMeteor> dataBug;
+	private ArrayList<LMeteor> dataDev;
 	private PCellGrid[][] panels;
 	private Image image;
 
@@ -62,29 +63,42 @@ public class PSystem extends JPanel {
 		 * pondente.
 		 * */
 		panels = PCellGrid.createGrid(this);
+		dataBug = new ArrayList<>();
+		dataDev = new ArrayList<>();
 		
-		panels[8][8].add(dataMatrix.get(0));
-		panels[7][8].add(dataMatrix.get(1));
-		panels[6][8].add(dataMatrix.get(2));
-		panels[5][8].add(dataMatrix.get(3));
-		panels[4][8].add(dataMatrix.get(4));
-		panels[3][8].add(dataMatrix.get(5));
-		panels[2][8].add(dataMatrix.get(6));
-		panels[1][8].add(dataMatrix.get(7));
+		setPanels(getDataMatrix().get(0), 8, 8);
+		setPanels(getDataMatrix().get(1), 7, 8);
+		setPanels(getDataMatrix().get(2), 6, 8);
+		setPanels(getDataMatrix().get(3), 5, 8);
+		setPanels(getDataMatrix().get(4), 4, 8);
+		setPanels(getDataMatrix().get(5), 3, 8);
+		setPanels(getDataMatrix().get(6), 2, 8);
+		setPanels(getDataMatrix().get(7), 1, 8);
 	}
-
+	
+	// Atualizar bugs e devs
+	public void addMeteors() {
+		for (LMeteor lMeteor : dataBug) {
+			setPanels(lMeteor, lMeteor.getPosY(), lMeteor.getPosX());
+			System.out.println(lMeteor.getPosX() + " "+lMeteor.getPosY());
+		}
+		for (LMeteor lMeteor : dataDev) {
+			setPanels(lMeteor, lMeteor.getPosY(), lMeteor.getPosX());
+		}
+	}
+	
 	// Chame métodos que criam planetas
 	private void adjustPlanets() {
 		dataMatrix = new ArrayList<>();
 		
-		dataMatrix.add(new LPlanet("java"));
-		dataMatrix.add(new LPlanet("python"));
-		dataMatrix.add(new LPlanet("javaScript"));
-		dataMatrix.add(new LPlanet("ruby"));
-		dataMatrix.add(new LPlanet("php"));
-		dataMatrix.add(new LPlanet("cSharp"));
-		dataMatrix.add(new LPlanet("cPlusPlus"));
-		dataMatrix.add(new LPlanet("cLanguage"));
+		getDataMatrix().add(0, new LPlanet("java"));
+		getDataMatrix().add(1, new LPlanet("python"));
+		getDataMatrix().add(2, new LPlanet("javaScript"));
+		getDataMatrix().add(3, new LPlanet("ruby"));
+		getDataMatrix().add(4, new LPlanet("php"));
+		getDataMatrix().add(5, new LPlanet("cSharp"));
+		getDataMatrix().add(6, new LPlanet("cPlusPlus"));
+		getDataMatrix().add(7, new LPlanet("cLanguage"));
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -103,23 +117,23 @@ public class PSystem extends JPanel {
 		return height;
 	}
 	
-	public JPanel[][] getPanels() {
+	public PCellGrid[][] getPanels() {
 		return panels;
 	}
 	
-	public void setPanels(JLabel label, int x, int y) {
-		this.panels[x][y].add(label);
+	public void setPanels(JLabel label, int row, int column) {
+		this.panels[row][column].add(label);
 	}
 
 	public ArrayList<JLabel> getDataMatrix() {
 		return dataMatrix;
 	}
 
-	public ArrayList<JLabel> getDataBug() {
+	public ArrayList<LMeteor> getDataBug() {
 		return dataBug;
 	}
 
-	public ArrayList<JLabel> getDataDev() {
+	public ArrayList<LMeteor> getDataDev() {
 		return dataDev;
 	}
 }
