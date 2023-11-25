@@ -8,12 +8,26 @@ import planets.Meteoro;
 
 public class VerificadorDeColisoes {
 	private boolean verificador;
+	private boolean explose;
+	
 	private List<Meteoro> bugsToRemove;
-	private List<Meteoro> devsToRemove; 
+	private List<Meteoro> devsToRemove;
+	private List<AstroLinguagem> planetsRemove;
+	
+	private List<Meteoro> bugsToRemoveCopy;
+	private List<Meteoro> devsToRemoveCopy;
+	private List<AstroLinguagem> planetsRemoveCopy;
 
 	public void verificarColisao(JavaLar init) {
 		bugsToRemove = new ArrayList<>();
-		devsToRemove = new ArrayList<>(); 
+		devsToRemove = new ArrayList<>();
+		planetsRemove = new ArrayList<>();
+		
+		bugsToRemoveCopy = new ArrayList<>();
+		devsToRemoveCopy = new ArrayList<>();
+		planetsRemoveCopy = new ArrayList<>();
+		
+		explose = false;
 		List<AstroLinguagem> astrosCopy = new ArrayList<>(init.getAstros());
 
 		// Verificar colisões entre bugs e planetas
@@ -26,8 +40,11 @@ public class VerificadorDeColisoes {
 					if(astro != null && astro.getVelocidadeDeTranslacao() <= 0) {
 						astro.setExplodiu(verificador); // primeiro registra que o planeta explodiu
 						init.getAstros().remove(astro); //remove do JavaLar
+						planetsRemove.add(astro);
+						explose = true;
+						init.getAstrosRemoved().add(astro);
 						init.getRegister().setAstrosLista(astro); // depois registra o planeta
-						init.getRegister().addAtualizacaoList(astro); 
+						init.getRegister().addAtualizacaoList(astro);
 					}
 				}
 			}
@@ -45,6 +62,12 @@ public class VerificadorDeColisoes {
 		// Remover elementos das listas originais
 		init.obterArrayDeBugs().removeAll(bugsToRemove);
 		init.obterArrayDeDevs().removeAll(devsToRemove);
+		
+		bugsToRemoveCopy.addAll(bugsToRemove);
+		devsToRemoveCopy.addAll(devsToRemove);
+		
+		bugsToRemove.clear();
+		devsToRemove.clear();
 	}
 
 	// identifica o corpo estranho e chama funções de verificar colisao
@@ -89,12 +112,22 @@ public class VerificadorDeColisoes {
 	public boolean isVerificador() {
 		return verificador;
 	}
-
-	public List<Meteoro> getBugsToRemove() {
-		return bugsToRemove;
+	
+	public boolean isExplose() {
+		return explose;
 	}
 
-	public List<Meteoro> getDevsToRemove() {
-		return devsToRemove;
+	public List<Meteoro> getBugsToRemoveCopy() {
+		return bugsToRemoveCopy;
 	}
+
+	public List<Meteoro> getDevsToRemoveCopy() {
+		return devsToRemoveCopy;
+	}
+
+	public List<AstroLinguagem> getPlanetsRemoveCopy() {
+		return planetsRemoveCopy;
+	}
+	
+	
 }

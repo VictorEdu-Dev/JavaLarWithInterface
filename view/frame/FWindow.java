@@ -3,6 +3,8 @@ package frame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -32,12 +34,11 @@ public class FWindow extends JFrame {
 	}
 
 	// Elementos do frame
-	
 	private void createWindow() {
-		adjustFrame();
 		initializePanels();
+		adjustFrame();
 		addComponents();
-		playAudio(50);
+	//	playAudio(20);
 		verifyCloseOperation();
 	}
 
@@ -58,11 +59,13 @@ public class FWindow extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new FlowLayout());
+		setUndecorated(false);
 		setSize(800, 600);
 		setTitle("Javalar System");
 		setMinimumSize(new Dimension(600, 400));
-		getContentPane().setBackground(Color.decode("#132646"));
+		getContentPane().setBackground(Color.decode("#120D1C"));
 		setCustomUI(this, Color.LIGHT_GRAY);
+		setButtonOut();
 	}
 
 	// Muda aparência da da interface
@@ -76,7 +79,7 @@ public class FWindow extends JFrame {
 	}
 
 	// Verificar evento de fechamento da janela
-	
+
 	private void verifyCloseOperation() {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -133,6 +136,27 @@ public class FWindow extends JFrame {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	private void setButtonOut() {
+		buttonPanel.getbOut().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int option = JOptionPane.showConfirmDialog(
+						null, 
+						"Deseja realmente sair?", 
+						"Confirmação", 
+						JOptionPane.YES_NO_OPTION
+						);
+
+				if (option == JOptionPane.YES_OPTION) {
+					dispose();
+					System.exit(0);
+				} else {
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				}
+			}
+		});
 	}
 
 	// Getters para uso posterior

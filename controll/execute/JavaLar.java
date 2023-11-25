@@ -20,12 +20,14 @@ public class JavaLar {
 	private ArrayList<AstroLinguagem> astros; // contémm os planetas já iniciados no construtor
 	private ArrayList<Meteoro> bugs; // estão no mesmo plano dos planetas
 	private ArrayList<Meteoro> devs; // estão no mesmo plano dos planetas
+	private ArrayList<AstroLinguagem> astrosRemoved;
 	private Historico register;
 	
 	public JavaLar() {
 		astros = new ArrayList<AstroLinguagem>();
 		bugs = new ArrayList<Meteoro>();
 		devs = new ArrayList<Meteoro>();
+		setAstrosRemoved(new ArrayList<>());
 		register = new Historico();
 		iniciarSistema();
 	}
@@ -36,7 +38,7 @@ public class JavaLar {
 		astros.add(new Java("Java", 8, 8, 0));
 		astros.add(new Python("Python", 8, 9, 4));
 		astros.add(new JavaScript("JavaScript", 8, 10, 3));
-		astros.add(new RubyOnRails("Ruby", 8, 11, 2));
+		astros.add(new RubyOnRails("Ruby on Rails", 8, 11, 2));
 		astros.add(new PHP("PHP", 8, 12, 2));
 		astros.add(new CSharp("C#", 8, 13, 1));
 		astros.add(new CPlusPlus("C++", 8, 14, 2));
@@ -109,6 +111,14 @@ public class JavaLar {
 	
 	public Historico getRegister() {
 		return register;
+	}
+
+	public ArrayList<AstroLinguagem> getAstrosRemoved() {
+		return astrosRemoved;
+	}
+
+	public void setAstrosRemoved(ArrayList<AstroLinguagem> astrosRemoved) {
+		this.astrosRemoved = astrosRemoved;
 	}
 	
 }

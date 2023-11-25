@@ -29,13 +29,13 @@ public class Translation extends Thread {
 			if (deslocamento > appDeslocYUp) {
 				for(int i = 0; i < appDeslocYUp; i++) {
 					astro.setPosY(1); // desloca em Y
-		//			verify.verificarColisao(init);
+					verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
 				for(int i = 0; i < deslocamento; i++) {
 					astro.setPosY(1);
-		//			verify.verificarColisao(init);
+					verify.verificarColisao(init);
 				}
 				deslocamento = 0;
 			}
@@ -49,13 +49,13 @@ public class Translation extends Thread {
 			if (deslocamento > appDeslocXRigth) {
 				for(int i = 0; i < appDeslocXRigth; i++) {
 					astro.setPosX(1); // desloca em X
-			//		verify.verificarColisao(init);
+					verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
 				for(int i = 0; i < deslocamento; i++) {
 					astro.setPosX(1);
-			//		verify.verificarColisao(init);
+					verify.verificarColisao(init);
 				}
 				deslocamento = 0;
 			}
@@ -69,13 +69,13 @@ public class Translation extends Thread {
 			if (deslocamento > appDeslocYDown) {
 				for(int i = 0; i < appDeslocYDown; i++) {
 					astro.setPosY(-1); // desloca em Y
-			//		verify.verificarColisao(init);
+					verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
 				for(int i = 0; i < deslocamento; i++) {
 					astro.setPosY(-1);
-			//		verify.verificarColisao(init);
+					verify.verificarColisao(init);
 				}
 				deslocamento = 0;
 			}
@@ -89,13 +89,13 @@ public class Translation extends Thread {
 			if (deslocamento > appDeslocXLeft) {
 				for(int i = 0; i < appDeslocXLeft; i++) {
 					astro.setPosX(-1); // desloca em X
-			//		verify.verificarColisao(init);
+					verify.verificarColisao(init);
 					deslocamento -= 1;
 				}
 			} else {
 				for(int i = 0; i < deslocamento; i++) {
 					astro.setPosX(-1);
-			//		verify.verificarColisao(init);
+					verify.verificarColisao(init);
 				}
 				deslocamento = 0;
 			}

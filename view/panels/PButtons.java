@@ -24,8 +24,8 @@ public class PButtons extends JPanel {
 	}
 
 	private void adjustPanel() {
-		setLayout(new GridLayout(5, 1));
-		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		setLayout(new GridLayout(7, 1));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 		setOpaque(false);
 		setPreferredSize(new Dimension(width, heigth));
 
@@ -35,9 +35,15 @@ public class PButtons extends JPanel {
 	// Adiciona botões ao layout
 	private void addButtons() {
 		createButtons();
-		for (BMenuUser bMenuUser : buttonMenu) {
-			add(bMenuUser); // Adiciona botões sequencialmente
-		}
+		Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (BMenuUser bMenuUser : buttonMenu) {
+                    add(bMenuUser);
+                }
+            }
+        });
+		 thread.start();
 	}
 
 	// Cria botões pelos seus métodos
@@ -49,6 +55,8 @@ public class PButtons extends JPanel {
 		buttonMenu.add(3, new BMenuUser("<html><center>LER DADOS DE <br> "
 				+ "OUTROS PARTICIPANTES<center></html>")); // Botão 4
 		buttonMenu.add(4, new BMenuUser("GERAR ARQUIVO DE SAÍDA")); // Botão 5
+		buttonMenu.add(5, new BMenuUser("REGISTRAR USUÁRIO")); // Botão 6
+		buttonMenu.add(6, new BMenuUser("FECHAR", "#D1001F")); // Botão 7
 	}
 
 	// Getters para uso posterior
@@ -71,5 +79,17 @@ public class PButtons extends JPanel {
 
 	public JButton getbGAS() {
 		return buttonMenu.get(4);
+	}
+
+	public JButton getbRegister() {
+		return buttonMenu.get(5);
+	}
+	
+	public JButton getbOut() {
+		return buttonMenu.get(6);
+	}
+	
+	public List<BMenuUser> getButtonMenu() {
+		return buttonMenu;
 	}
 }

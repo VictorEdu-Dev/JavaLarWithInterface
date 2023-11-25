@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ReadFile {
+	private File file;
+    private String fileName;
 
-	public ReadFile() {
-	}
+    public ReadFile() {
+    }
 
-	public static ArrayList<ArrayList<String>> readValues() {
+	public ArrayList<ArrayList<String>> readValues() {
         List<ArrayList<String>> valuesList = new ArrayList<>();
 
         try {
@@ -38,7 +40,7 @@ public class ReadFile {
         return new ArrayList<>(valuesList);
     }
 
-	public static File escolherArquivo() {
+	public File escolherArquivo() {
 		JFileChooser fileChooser = new JFileChooser();
 
 		// Configurar o filtro de extensão de arquivo
@@ -49,9 +51,19 @@ public class ReadFile {
 		int result = fileChooser.showOpenDialog(null);
 
 		if (result == JFileChooser.APPROVE_OPTION) {
-			return fileChooser.getSelectedFile();
+			File file = fileChooser.getSelectedFile();
+			fileName = file.getName();
+			return file;
 		}
 
 		return null;
 	}
+	
+	public File getFile() {
+        return file;
+    }
+
+    public String getNomeArquivo() {
+        return fileName;
+    }
 }

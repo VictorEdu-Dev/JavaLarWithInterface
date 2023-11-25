@@ -12,12 +12,17 @@ public class BMenuUser extends JButton {
 	public BMenuUser(String text) {
 		adjustButton(text);
 	}
+	
+	public BMenuUser(String text, String color) {
+		adjustButton(text);
+		setBackground(Color.decode(color));
+	}
 
 	private void adjustButton(String text) {
 		setText(text);
 		setFont(new Font("Arial", Font.BOLD, 14));
 		setForeground(Color.BLACK);
-		setBackground(Color.decode("#BED9FF"));
+		setBackground(Color.decode("#BED9FF"));	
 	}
 
 	public String getId() {

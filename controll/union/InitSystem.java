@@ -12,15 +12,19 @@ public class InitSystem extends EventsJavaLar {
 	public InitSystem() {
 		super();
 		inter = new Interceptador();
-		// database = new DataBaseConnection("da_java.mysql.dbaas.com.br", "da_java", "da_java", "Tecnicas*2023@");
 		window = new FWindow();
-
+		
+		
+		setWindow(window);
+		setInter(inter);
 		runSystem();
 	}
 
 	private void runSystem() {
 		eventBLNAE(window);
 		eventBPPI(window, inter);
+		eventBGR(window, database);
+		eventBRegister(window);
 	}
 
 	public Interceptador getInter() {

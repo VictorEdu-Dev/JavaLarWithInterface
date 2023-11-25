@@ -5,6 +5,7 @@ import java.util.List;
 
 import execute.suport.Translation;
 import planets.AstroLinguagem;
+import planets.Meteoro;
 import util.Calculus;
 import util.Coordinates;
 
@@ -122,5 +123,21 @@ public class Interceptador extends Calculus {
 
 	public Translation getTranslation() {
 		return trans;
+	}
+	
+	public List<Coordinates> bugsToRemove() {
+		List<Coordinates> list = new ArrayList<>();
+		for(Meteoro met : trans.getVerify().getBugsToRemoveCopy()) {
+			list.add(new Coordinates(met.getCoordX(), met.getCoordY()));
+		}
+		return list;
+	}
+	
+	public List<Coordinates> devsToRemove() {
+		List<Coordinates> list = new ArrayList<>();
+		for(Meteoro met : trans.getVerify().getDevsToRemoveCopy()) {
+			list.add(new Coordinates(met.getCoordX(), met.getCoordY()));
+		}
+		return list;
 	}
 }

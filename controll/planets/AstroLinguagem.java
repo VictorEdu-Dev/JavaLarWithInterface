@@ -5,13 +5,14 @@ public abstract class AstroLinguagem {
 		private int posX;
 		private int posY;
 		private int velocidadeDeTranslacao;
-		// limits
+		private int dias;
+		private int anos;
+		
 		private int limitXLeft;
 		private int limitXRigth;
 		private int limitYUp;
 		private int limitYDown;
 
-		// características
 		private int numBugsColididos;
 		private int numDevsColididos;
 		private boolean explodiu;
@@ -23,7 +24,7 @@ public abstract class AstroLinguagem {
 	        this.velocidadeDeTranslacao = velocidadeDeTranslacao;
 	    }
 		
-		// metodos
+		// Getters e setters para uso posterior
 		public void setNumBugsColididos() {
 			this.numBugsColididos += 1;
 		}
@@ -107,6 +108,22 @@ public abstract class AstroLinguagem {
 
 		public void setLimitYDown(int limitYDown) {
 			this.limitYDown = limitYDown;
+		}
+
+		public int getDias() {
+			return dias;
+		}
+
+		public void setDias(int dias) {
+			this.dias = dias;
+		}
+
+		public int getAnos() {
+			return anos;
+		}
+
+		public void setAnos(int anos) {
+			this.anos = anos;
 		}
 		
 

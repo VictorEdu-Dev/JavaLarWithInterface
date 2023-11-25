@@ -6,11 +6,16 @@ import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class LPlanet extends JLabel {
+	private String nome;
+	private String tipo;
+	
 	public LPlanet(String imageUrl) {
+		this.nome = imageUrl;
+		this.tipo = "PLANETA";
 		adjustPlanet(imageUrl);
 	}
 
-	private void adjustPlanet(String imageUrl) {
+	public void adjustPlanet(String imageUrl) {
 		setSize(35, 35);
 		setAlignmentX(CENTER_ALIGNMENT);
 		setAlignmentY(CENTER_ALIGNMENT);
@@ -27,6 +32,14 @@ public class LPlanet extends JLabel {
 		Image resizedImage = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		ImageIcon resizedIcon = new ImageIcon(resizedImage);
 		return resizedIcon;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getTipo() {
+		return tipo;
 	}
 
 }

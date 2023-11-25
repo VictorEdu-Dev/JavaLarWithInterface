@@ -1,6 +1,9 @@
-/panels/
-/union/
 /connection/
 /exit/
-/execute/
 /frame/
+/main/
+/panels/
+/planets/
+/union/
+/util/
+/execute/
