@@ -21,7 +21,7 @@ public class EventsGR extends DataInsert {
 	}
 
 	public void insertData() {
-		adicionarInfo(eventsJavaLar.getRegister().getNome(), Integer.valueOf(eventsJavaLar.getRegister().getMatricula())); // Registro Nome e Matrícula
+		adicionarInfo(eventsJavaLar.getRegister().getNome(), Integer.parseInt(eventsJavaLar.getRegister().getMatricula())); // Registro Nome e Matrícula
 		addFileName(eventsJavaLar.getReadFile().getNomeArquivo()); // Registro do Nome de Arquivo Lido
 		
 		callThreadsAddData();

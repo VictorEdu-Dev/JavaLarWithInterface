@@ -153,6 +153,30 @@ public enum MessageJavaLar {
 					"Informação", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
+	}, 
+	
+	WAIT_GENERATE_REPORT {
+		public void showMessage() {
+			JOptionPane pane = new JOptionPane("Gerando relatório. Aguarde...", JOptionPane.INFORMATION_MESSAGE);
+			JDialog dialog = pane.createDialog(null, "Informação");
+
+			Timer timer = new Timer(5000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dialog.dispose();
+				}
+			});
+
+			timer.setRepeats(false);
+			timer.start();
+
+			dialog.setVisible(true);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	};
 
 	public abstract void showMessage();

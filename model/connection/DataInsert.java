@@ -11,6 +11,8 @@ public class DataInsert  {
     private String nome;
     private int matricula;
     private String nomeArquivo;
+    
+    private boolean verifyConcludeOperation;
 
     // Números de bugs e devs por planeta
     private int bugPython;
@@ -69,15 +71,6 @@ public class DataInsert  {
     
     public DataInsert() {
     }
-
-	public void adicionarInfo(String nome, int matricula) {
-		this.nome = nome;
-        this.matricula = matricula;
-	}
-	
-	public void addFileName(String fileName) {
-		this.nomeArquivo = fileName;
-	}
 
     public void adicionarBugs(int python, int javaScript, int ruby, int php, int cSharp, int cPlusPlus, int c) {
         this.bugPython = python;
@@ -190,7 +183,7 @@ public class DataInsert  {
            }
     }
     
-    public static void inserirRegistro(String query, Object... parametros) {
+    public void inserirRegistro(String query, Object... parametros) {
         try (Connection conexao = connection;
              PreparedStatement stmt = conexao.prepareStatement(query)) {
 
@@ -199,9 +192,11 @@ public class DataInsert  {
             }
 
             stmt.executeUpdate();
-
+            setVerifyConcludeOperation(true);
+            
         } catch (SQLException e) {
             e.printStackTrace();
+            setVerifyConcludeOperation(false);
         }
     }
     
@@ -581,6 +576,23 @@ public class DataInsert  {
 
 	public void setNomeArquivo(String nomeArquivo) {
 		this.nomeArquivo = nomeArquivo;
+	}
+
+	public boolean isVerifyConcludeOperation() {
+		return verifyConcludeOperation;
+	}
+
+	public void setVerifyConcludeOperation(boolean verifyConcludeOperation) {
+		this.verifyConcludeOperation = verifyConcludeOperation;
+	}
+	
+	public void adicionarInfo(String nome, int matricula) {
+		this.nome = nome;
+        this.matricula = matricula;
+	}
+	
+	public void addFileName(String fileName) {
+		this.nomeArquivo = fileName;
 	}
     
     

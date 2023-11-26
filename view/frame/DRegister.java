@@ -45,7 +45,9 @@ public class DRegister extends JDialog {
 		initComponents();
         layoutComponents();
         centerOnFrame();
-        addEventListeners();
+        addEventOk();
+        addEventCancelar();
+        setVisible(true);
 	}
 
     private void initComponents() {
@@ -120,18 +122,23 @@ public class DRegister extends JDialog {
 		return matricula;
 	}
 
-	private void addEventListeners() {
+	private void addEventOk() {
         btnRegistrar.addActionListener(e -> {
             nome = txtNome.getText();
             matricula = txtMatricula.getText();
             setIsRegister(true);
-            dispose();
-        });
-
-        btnCancelar.addActionListener(e -> {
-        	MessageJavaLar.OPERATION_CANCELED.showMessage();
-            setIsRegister(false);
+            MessageJavaLar.PROCESSING_SYSTEM.showMessageSpecial(getName() + " registrado!");
             dispose();
         });
     }
-}
+	
+	private void addEventCancelar() {
+		btnCancelar.addActionListener(e -> {
+        	nome = null;
+        	matricula = null;
+            setIsRegister(false);
+            MessageJavaLar.OPERATION_CANCELED.showMessage();
+            dispose();
+        });
+	}
+	}

@@ -35,6 +35,7 @@ public class EventsJavaLar {
 	protected void eventBLNAE() {
 		window.getButtonPanel().getbLNAE().addActionListener(e -> {
 			Thread thread = new Thread(() -> {
+				verifyNullValues = false;
 				if (register.isRegister()) {
 					verifyNullValues = eventsLNAE.setValues(readFile.readValues());
 				} else {
@@ -59,11 +60,15 @@ public class EventsJavaLar {
 	protected void eventBGR() {
 		window.getButtonPanel().getbGR().addActionListener(e -> {
 			Thread thread = new Thread(() -> {
-				if(verifyNullValues) {
+				if(register.isRegister()) {
 					eventsGR.insertData();
-					MessageJavaLar.SUCCESS_GENERATE_REPORT.showMessage();
+					if(eventsGR.isVerifyConcludeOperation()) {
+						MessageJavaLar.SUCCESS_GENERATE_REPORT.showMessage();
+					} else {
+						 MessageJavaLar.NOT_RUN_YET.showMessage();
+					}
 				} else {
-					MessageJavaLar.NOT_RUN_YET.showMessage();
+					MessageJavaLar.NO_USERS_MESSAGE.showMessage();
 				}
 			});
 			thread.start();
@@ -102,13 +107,8 @@ public class EventsJavaLar {
 			Thread thread = new Thread(() -> {
 				if (register.isRegister()) {
 					MessageJavaLar.USER_REGISTERED_MESSAGE.showMessage();
-					MessageJavaLar.PROCESSING_SYSTEM.showMessageSpecial(register.getName() + " registrado!");
 				} else {
 					register.initDialog();
-					register.setVisible(true);
-					if(verifyNullValues) {
-						
-					}
 				}
 			});
 			thread.start();
