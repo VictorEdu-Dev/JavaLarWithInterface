@@ -16,7 +16,7 @@ public class EventsGR extends DataInsert {
 	}
 
 	public void openConnection() {
-		DataBaseConnection database = new DataBaseConnection("da_java.mysql.dbaas.com.br", "da_java", "da_java", "Tecnicas*2023@");
+		DataBaseConnection database = new DataBaseConnection();
 		setConnection(database.getConnection());
 	}
 
@@ -27,8 +27,6 @@ public class EventsGR extends DataInsert {
 		callThreadsAddData();
 		openConnection();
 		saveReport();
-		
-		System.out.println("Dados registrados!");
 	}
 
 	private void callThreadsAddData() {

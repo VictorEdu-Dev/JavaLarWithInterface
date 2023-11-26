@@ -38,7 +38,7 @@ public class FWindow extends JFrame {
 		initializePanels();
 		adjustFrame();
 		addComponents();
-	//	playAudio(20);
+		playAudio(20);
 		verifyCloseOperation();
 	}
 

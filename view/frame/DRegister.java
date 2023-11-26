@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import constants.MessageJavaLar;
 import panels.buttons.BMenuUser;
 import util.Coordinates;
 
@@ -123,13 +124,12 @@ public class DRegister extends JDialog {
         btnRegistrar.addActionListener(e -> {
             nome = txtNome.getText();
             matricula = txtMatricula.getText();
-            System.out.println("Registrado - Nome: " + nome + ", Matrícula: " + matricula);
             setIsRegister(true);
             dispose();
         });
 
         btnCancelar.addActionListener(e -> {
-            System.out.println("Operação cancelada");
+        	MessageJavaLar.OPERATION_CANCELED.showMessage();
             setIsRegister(false);
             dispose();
         });

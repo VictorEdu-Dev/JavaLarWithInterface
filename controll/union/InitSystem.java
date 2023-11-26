@@ -21,18 +21,12 @@ public class InitSystem extends EventsJavaLar {
 	}
 
 	private void runSystem() {
-		eventBLNAE(window);
-		eventBPPI(window, inter);
-		eventBGR(window, database);
-		eventBRegister(window);
-	}
-
-	public Interceptador getInter() {
-		return inter;
-	}
-
-	public FWindow getWindow() {
-		return window;
+		eventBLNAE();
+		eventBPPI();
+		eventBGR();
+		eventBLDOP();
+		eventBGAS();
+		eventBRegister();
 	}
 
 	public DataBaseConnection getDatabase() {

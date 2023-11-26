@@ -2,10 +2,8 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 public class DataInsert  {
 	private static Connection connection;
@@ -146,6 +144,10 @@ public class DataInsert  {
     }
 
     public void saveReport() {
+    	int numColunas = 46;
+
+    	String placeholders = String.join(", ", Collections.nCopies(numColunas, "?"));
+    	
         String query = "INSERT INTO javalar (nome, matricula, nome_arquivo, " +
                 "bug_python, bug_javascript, bug_ruby, bug_php, bug_csharp, bug_cmais, bug_c, " +
                 "dev_python, dev_javascript, dev_ruby, dev_php, dev_csharp, dev_cmais, dev_c, " +
@@ -154,8 +156,7 @@ public class DataInsert  {
                 "a_python, a_javascript, a_ruby, a_php, a_csharp, a_cmais, a_c, " +
                 "bug_q1, bug_q2, bug_q3, bug_q4, " +
                 "dev_q1, dev_q2, dev_q3, dev_q4) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-                + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (" + placeholders + ")";
 
         inserirRegistro(query, nome, matricula, nomeArquivo,
                 bugPython, bugJavaScript, bugRuby, bugPHP, bugCSharp, bugCPlusPlus, bugC,
@@ -203,32 +204,6 @@ public class DataInsert  {
             e.printStackTrace();
         }
     }
-    
-    public List<String> lerDadosOutrosParticipantes() {
-        List<String> dadosOutrosParticipantes = new ArrayList<>();
-
-        try {
-            String query = "SELECT nome, matricula, nome_arquivo FROM javalar";
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String nome = resultSet.getString("nome");
-                String matricula = resultSet.getString("matricula");
-                String nomeArquivo = resultSet.getString("nome_arquivo");
-
-                String dados = "Nome: " + nome + ", Matrícula: " + matricula + ", Arquivo: " + nomeArquivo;
-                dadosOutrosParticipantes.add(dados);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return dadosOutrosParticipantes;
-    }
-
-    
-    
     
     
     // Getters e setters para uso posterior

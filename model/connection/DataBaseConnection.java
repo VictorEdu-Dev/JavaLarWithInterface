@@ -23,14 +23,22 @@ public class DataBaseConnection {
 		connectDatabase();
 	}
 	
-	// Construtor sem parâmetros
 	public DataBaseConnection() {
-		setHost("127.0.0.1");
-		setDatabase("barracahotdog");
-		setUser("Victor");
-		setPassword("Vv,11111");
+		setHost("da_java.mysql.dbaas.com.br");
+		setDatabase("da_java");
+		setUser("da_java");
+		setPassword("Tecnicas*2023@");
 		connectDatabase();
 	}
+	
+	// Construtor sem parâmetros
+//	public DataBaseConnection() {
+//		setHost("127.0.0.1");
+//		setDatabase("barracahotdog");
+//		setUser("Victor");
+//		setPassword("Vv,11111");
+//		connectDatabase();
+//	}
 
 	// Tenta iniciar uma conexão com o banco
 	private void connectDatabase() {

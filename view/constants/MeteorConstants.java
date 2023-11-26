@@ -1,4 +1,4 @@
-package panels.planets;
+package constants;
 
 public enum MeteorConstants {
 	BUG("bug"),
