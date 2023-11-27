@@ -24,7 +24,7 @@ public class PButtons extends JPanel {
 	}
 
 	private void adjustPanel() {
-		setLayout(new GridLayout(7, 1));
+		setLayout(new GridLayout(8, 1));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 		setOpaque(false);
 		setPreferredSize(new Dimension(width, heigth));
@@ -56,7 +56,8 @@ public class PButtons extends JPanel {
 				+ "OUTROS PARTICIPANTES<center></html>")); // Botão 4
 		buttonMenu.add(4, new BMenuUser("GERAR ARQUIVO DE SAÍDA")); // Botão 5
 		buttonMenu.add(5, new BMenuUser("REGISTRAR USUÁRIO")); // Botão 6
-		buttonMenu.add(6, new BMenuUser("FECHAR", "#D1001F")); // Botão 7
+		buttonMenu.add(6, new BMenuUser("REINICIAR JOGO")); // Botão 7
+		buttonMenu.add(7, new BMenuUser("FECHAR", "#D1001F")); // Botão 8
 	}
 
 	// Getters para uso posterior
@@ -85,8 +86,12 @@ public class PButtons extends JPanel {
 		return buttonMenu.get(5);
 	}
 	
-	public JButton getbOut() {
+	public JButton getbRestart() {
 		return buttonMenu.get(6);
+	}
+	
+	public JButton getbOut() {
+		return buttonMenu.get(7);
 	}
 	
 	public List<BMenuUser> getButtonMenu() {

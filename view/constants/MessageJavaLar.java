@@ -177,12 +177,26 @@ public enum MessageJavaLar {
 				e.printStackTrace();
 			}
 		}
+	},
+	
+	RESTART_MESSAGE {
+		public int showMessageReturn() {
+			return JOptionPane.showConfirmDialog(null, "Tem certeza que deseja reiniciar o jogo?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		}
+
+		@Override
+		public void showMessage() {
+		}
+		
 	};
 
 	public abstract void showMessage();
 	public void showMessageSpecial(String object) {
 	}
 	public void showMessageSpecial(Boolean verify) {
+	}
+	public int showMessageReturn() {
+		return 0;
 	}
 	public void abrirURL(String url) {
 	}

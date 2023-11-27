@@ -13,6 +13,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -25,7 +26,7 @@ import panels.PSystem;
 @SuppressWarnings("serial")
 public class FWindow extends JFrame {
 
-	// Paineis princiapais
+	// Paineis principais
 	private PSystem planetarium;
 	private PButtons buttonPanel;
 
@@ -56,6 +57,10 @@ public class FWindow extends JFrame {
 
 	// Configurações iniciais do frame
 	private void adjustFrame() {
+		ImageIcon icon = new ImageIcon("C:\\Central de Desenvolvimento\\Java"
+				+ "\\Desktop\\Workspace\\JavaLarSystemInterface\\Projeto"
+				+ "\\view\\panels\\planets\\Java.png");
+        setIconImage(icon.getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new FlowLayout());
@@ -166,5 +171,9 @@ public class FWindow extends JFrame {
 
 	public PButtons getButtonPanel() {
 		return buttonPanel;
+	}
+
+	public void setPlanetarium(PSystem planetarium) {
+		this.planetarium = planetarium;
 	}
 }

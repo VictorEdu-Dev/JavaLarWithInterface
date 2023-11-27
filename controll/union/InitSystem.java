@@ -27,6 +27,7 @@ public class InitSystem extends EventsJavaLar {
 		eventBLDOP();
 		eventBGAS();
 		eventBRegister();
+		eventBRestart();
 	}
 
 	public DataBaseConnection getDatabase() {

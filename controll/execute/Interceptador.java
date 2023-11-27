@@ -140,4 +140,8 @@ public class Interceptador extends Calculus {
 		}
 		return list;
 	}
+
+	public void setInit(JavaLar init) {
+		this.init = init;
+	}
 }
