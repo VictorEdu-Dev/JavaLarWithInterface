@@ -24,10 +24,10 @@ public class DataBaseConnection {
 	}
 	
 	public DataBaseConnection() {
-		setHost("da_java.mysql.dbaas.com.br");
-		setDatabase("da_java");
-		setUser("da_java");
-		setPassword("Tecnicas*2023@");
+		setHost(/*"da_java.mysql.dbaas.com.br"*/"127.0.0.1");
+		setDatabase(/*"da_java"*/"javalar");
+		setUser(/*"da_java"*/"Victor");
+		setPassword(/*"Tecnicas*2023@"*/"Vv,11111");
 		connectDatabase();
 	}
 	

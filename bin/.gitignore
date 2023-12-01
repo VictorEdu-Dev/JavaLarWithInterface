@@ -1,9 +1,10 @@
-/execute/
-/planets/
 /connection/
+/constants/
+/execute/
 /exit/
 /frame/
 /main/
 /panels/
+/planets/
 /union/
-/constants/
+/util/

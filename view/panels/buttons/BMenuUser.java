@@ -28,7 +28,4 @@ public class BMenuUser extends JButton {
 	public String getId() {
 		return id;
 	}
-	
-	
-
 }

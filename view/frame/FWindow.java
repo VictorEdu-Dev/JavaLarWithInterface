@@ -39,7 +39,7 @@ public class FWindow extends JFrame {
 		initializePanels();
 		adjustFrame();
 		addComponents();
-		playAudio(20);
+		playAudio(0);
 		verifyCloseOperation();
 	}
 
@@ -134,8 +134,6 @@ public class FWindow extends JFrame {
 				System.out.println("Controle de volume não suportado.");
 			}
 
-			// Reproduz o áudio
-			clip.start();
 			// Reproduz o áudio
 			clip.start();
 		} catch (Exception ex) {
